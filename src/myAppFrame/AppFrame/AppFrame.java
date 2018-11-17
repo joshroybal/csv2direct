@@ -33,8 +33,8 @@ public class AppFrame extends javax.swing.JFrame {
         MenuArea.setText("working");
         try {
             // String filename = "D:\\textfiles\\csv\\us-500.csv";
-            // String filename = "/mnt/data/textfiles/csv/world.csv";
-            String filename = "/mnt/data/textfiles/csv/us-500.csv";
+            // String filename = "D:\\textfiles\\csv\\world.csv";
+            String filename = "us-500.csv";
 
             File csvfile = new File(filename);
             FileReader fr = new FileReader(csvfile);
@@ -180,7 +180,7 @@ public class AppFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(KeyField, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(KeyField)
                             .addComponent(ReportField)
                             .addComponent(SortField))
                         .addGap(257, 257, 257))
@@ -229,8 +229,8 @@ public class AppFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
