@@ -35,7 +35,8 @@ public class AppFrame extends javax.swing.JFrame {
             // String filename = "D:\\textfiles\\csv\\us-500.csv";
             // String filename = "D:\\textfiles\\csv\\world.csv";
             // String filename = "us-500.csv";
-            String filename = "/home/slacker/textfiles/csv/great.csv";
+            // String filename = "/home/slacker/textfiles/csv/great.csv";
+            String filename = "uk-500.csv";
 
             File csvfile = new File(filename);
             FileReader fr = new FileReader(csvfile);
