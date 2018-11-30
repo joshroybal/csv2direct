@@ -34,9 +34,7 @@ public class AppFrame extends javax.swing.JFrame {
         try {
             // String filename = "D:\\textfiles\\csv\\us-500.csv";
             // String filename = "D:\\textfiles\\csv\\world.csv";
-            // String filename = "us-500.csv";
-            // String filename = "/home/slacker/textfiles/csv/great.csv";
-            String filename = "uk-500.csv";
+            String filename = "us-500.csv";
 
             File csvfile = new File(filename);
             FileReader fr = new FileReader(csvfile);
@@ -182,7 +180,7 @@ public class AppFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(KeyField)
+                            .addComponent(KeyField, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                             .addComponent(ReportField)
                             .addComponent(SortField))
                         .addGap(257, 257, 257))
@@ -231,14 +229,14 @@ public class AppFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -253,7 +251,7 @@ public class AppFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -267,45 +265,33 @@ public class AppFrame extends javax.swing.JFrame {
         try {
             ReportArea.setText("");
 
+            
             // process key field choices
             String keystr = KeyField.getText();
+            String[] ws_key = keystr.split("\\D+");
+            int nokeys = ws_key.length;
             ArrayList<Integer> keyfields = new ArrayList();
-            Scanner sc = new Scanner(keystr);
-            while (sc.hasNextInt()) {
-                int fldno = sc.nextInt();
-                if (fldno < 1 || fldno > NOFLDS) {
-                    continue;
-                }
-                keyfields.add(fldno);
-            }
-            int nokeys = keyfields.size();
+            for (int i = 0; i < nokeys; i++)
+                keyfields.add(Integer.parseInt(ws_key[i]));
 
             // process report field choices
             String reportstr = ReportField.getText();
             ArrayList<Integer> reportfields = new ArrayList();
-            sc = new Scanner(reportstr);
-            while (sc.hasNextInt()) {
-                int fldno = sc.nextInt();
-                if (fldno < 1 || fldno > NOFLDS) {
-                    continue;
-                }
-                reportfields.add(fldno);
+            String[] ws_report = reportstr.split("\\D++");
+            for (int i = 0; i < ws_report.length; i++) {
+                int fldno = Integer.parseInt(ws_report[i]);
+                if (fldno >= 1 && fldno <= NOFLDS)
+                    reportfields.add(fldno);
             }
             int nrf = reportfields.size();
 
             // process order field choices
             String orderstr = SortField.getText();
+            String[] ws_order = orderstr.split("\\D++");
+            int nof = ws_order.length;
             ArrayList<Integer> orderfields = new ArrayList();
-            sc = new Scanner(orderstr);
-            while (sc.hasNextInt()) {
-                int fldno = sc.nextInt();
-                if (fldno < 1 || fldno > NOFLDS) {
-                    continue;
-                }
-                orderfields.add(fldno);
-            }
-
-
+            for (int i = 0; i < nof; i++)
+                orderfields.add(Integer.parseInt(ws_order[i]));
             // process target choice
             String target = TargetField.getText();
 
@@ -366,7 +352,7 @@ public class AppFrame extends javax.swing.JFrame {
                 }
                 report.add(row.toString() + "|\r\n");
                 StringBuilder comparator = new StringBuilder();
-                int nof = orderfields.size();
+                nof = orderfields.size();
                 if (nof > 0) {
                     for (int j = 0; j < nof; j++) {
                         comparator.append(getField(directrecord, 
