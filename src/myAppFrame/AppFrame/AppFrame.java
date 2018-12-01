@@ -267,31 +267,41 @@ public class AppFrame extends javax.swing.JFrame {
 
             
             // process key field choices
+            int nokeys = 0;
             String keystr = KeyField.getText();
             String[] ws_key = keystr.split("\\D+");
-            int nokeys = ws_key.length;
             ArrayList<Integer> keyfields = new ArrayList();
-            for (int i = 0; i < nokeys; i++)
-                keyfields.add(Integer.parseInt(ws_key[i]));
-
+            if (keystr.equals("") != true) {
+                for (int i = 0; i < ws_key.length; i++)
+                    keyfields.add(Integer.parseInt(ws_key[i]));
+            }
+            nokeys = keyfields.size();
+            
             // process report field choices
+            int nrf = 0;
             String reportstr = ReportField.getText();
             ArrayList<Integer> reportfields = new ArrayList();
             String[] ws_report = reportstr.split("\\D++");
-            for (int i = 0; i < ws_report.length; i++) {
-                int fldno = Integer.parseInt(ws_report[i]);
-                if (fldno >= 1 && fldno <= NOFLDS)
-                    reportfields.add(fldno);
+            if (reportstr.equals("") == false) {
+                for (int i = 0; i < ws_report.length; i++) {
+                    int fldno = Integer.parseInt(ws_report[i]);
+                    if (fldno >= 1 && fldno <= NOFLDS)
+                        reportfields.add(fldno);
+                }
             }
-            int nrf = reportfields.size();
+            nrf = reportfields.size();
 
             // process order field choices
+            int nof = 0;
             String orderstr = SortField.getText();
             String[] ws_order = orderstr.split("\\D++");
-            int nof = ws_order.length;
             ArrayList<Integer> orderfields = new ArrayList();
-            for (int i = 0; i < nof; i++)
-                orderfields.add(Integer.parseInt(ws_order[i]));
+            if (orderstr.equals("") != true) {
+                nof = ws_order.length;
+                for (int i = 0; i < nof; i++)
+                    orderfields.add(Integer.parseInt(ws_order[i]));
+            }
+            
             // process target choice
             String target = TargetField.getText();
 
